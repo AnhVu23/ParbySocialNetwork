@@ -83,13 +83,14 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
                             .build();
                 }
                 String uploadedFileLocation = UPLOAD_FOLDER + myUser.getUsername() + "/" + fileDetail.getFileName();
+                String imgData = "http://10.114.34.134/storage/" + myUser.getUsername() + "/" + fileDetail.getFileName();
 
                 try {
                     saveToFile(uploadedInputStream, uploadedFileLocation);
                     //After saving file, add image to database
                     Images img = new Images();
                     img.setCaption(caption);
-                    img.setImgData(uploadedFileLocation);
+                    img.setImgData(imgData);
                     img.setUploader(userId);
                     Date date = new Date();
                     img.setTime(date);
@@ -188,7 +189,27 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
     }
-
+    
+     @DELETE
+    @Path("admin/{id}")
+    public Response removeUserImage(@HeaderParam("authorization") String token, @PathParam("id") Integer id) {
+        int userId = JWTUtils.parseJWT(token);
+        if (userId != -1) {
+            Users myUser = em.find(Users.class, userId);
+            if (myUser != null) {
+                Images image = super.find(id);
+                if (image != null) {
+                    super.remove(image);
+                    return Response.status(Response.Status.OK).entity(HTTPErrorUtils.Ok("Successful")).build();
+                } else {
+                    return Response.status(Response.Status.BAD_REQUEST).entity(HTTPErrorUtils.badRequest("Can not find the image")).build();
+                }
+            } else {
+                return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
+    }
     //Get specify image by id 
     @GET
     @Path("{id}")
