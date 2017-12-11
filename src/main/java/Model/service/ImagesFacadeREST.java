@@ -64,20 +64,16 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
             @FormDataParam("file") FormDataContentDisposition fileDetail,
             @FormDataParam("caption") String caption,
             @FormDataParam("album") String albumTitle) {
-        System.err.println("upload: here we go.");
         int userId = JWTUtils.parseJWT(token);
         if (userId != -1) {
-            System.out.println("upload: user ok.");
             Users myUser = em.find(Users.class, userId);
             if (myUser != null) {
                 if (uploadedInputStream == null || fileDetail.getFileName() == null) {
                     return Response.status(Response.Status.BAD_REQUEST).entity(HTTPErrorUtils.badRequest("Invalid form data")).build();
                 }
                 try {
-                    System.out.println(myUser.getUsername());
                     createFolderIfNotExists(UPLOAD_FOLDER + myUser.getUsername() + "/");
                 } catch (SecurityException se) {
-                    System.out.println("upload: not able to create folder...");
                     return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                             .entity(HTTPErrorUtils.internalServerError("Can not create destination folder on server"))
                             .build();
@@ -178,8 +174,12 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
             if (myUser != null) {
                 Images image = super.find(id);
                 if (image != null) {
-                    super.remove(image);
-                    return Response.status(Response.Status.OK).entity(HTTPErrorUtils.Ok("Successful")).build();
+                    if (image.getUploader() == userId) {
+                        super.remove(image);
+                        return Response.status(Response.Status.OK).entity(HTTPErrorUtils.Ok("Successful")).build();
+                    } else {
+                         return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
+                    }
                 } else {
                     return Response.status(Response.Status.BAD_REQUEST).entity(HTTPErrorUtils.badRequest("Can not find the image")).build();
                 }
@@ -189,14 +189,15 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
     }
-    
-     @DELETE
+
+    //Only admin can delete every images that violates the terms and condition
+    @DELETE
     @Path("admin/{id}")
     public Response removeUserImage(@HeaderParam("authorization") String token, @PathParam("id") Integer id) {
         int userId = JWTUtils.parseJWT(token);
         if (userId != -1) {
             Users myUser = em.find(Users.class, userId);
-            if (myUser != null) {
+            if (myUser != null && myUser.getUsergroups() == 1) {
                 Images image = super.find(id);
                 if (image != null) {
                     super.remove(image);
@@ -210,6 +211,7 @@ public class ImagesFacadeREST extends AbstractFacade<Images> {
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(HTTPErrorUtils.unauthorized("The user can not perform this action")).build();
     }
+
     //Get specify image by id 
     @GET
     @Path("{id}")
