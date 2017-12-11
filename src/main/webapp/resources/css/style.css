@@ -1,0 +1,505 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  color: #555555;
+  background-color: #f5f5f5;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 0;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+section {
+  margin-top:50px;
+}
+
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.sticky {
+  position: fixed;
+  z-index: 100;
+}
+.bar {
+  height: 40px;
+  width: 100%;
+  background-color: #ffffff;
+  font-size: 0;
+}
+nav div,
+nav form {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 20px;
+  vertical-align: middle;
+}
+i {
+  color: #555555;
+}
+i:hover {
+  color: #02B3E4;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .hidden-min-768 {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .hidden-max-768 {
+    display: none;
+  }
+}
+::placeholder {
+  font-size: 14px;
+  color: #cccccc;
+}
+strong {
+  font-weight: bold;
+}
+.hidden {
+  display: none;
+}
+
+/*  ***************************************************
+Navbar
+***************************************************  */
+
+
+#navbar nav {
+  margin: 0 auto;
+  max-width: 900px;
+}
+#logo {
+  padding-top: 7px;
+}
+@media only screen and (min-width: 768px) {
+  #logo {
+    width: 20%;
+    text-align: right;
+  }
+  #searchbar {
+    padding: 0 0 0 10px;
+    width: 30%;
+    /* background-color: red; */
+  }
+  #searchbar input[type="text"] {
+    width: 85%;
+    padding: 4px 5px;
+    font-size: 14px;
+    margin: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid #eeeeee;
+  }
+  #searchbar input:focus {
+    outline: none;
+  }
+  #searchbar button {
+    width: 10%;
+    vertical-align: middle;
+    padding: 3px 0 5px 0;
+    background-color: #02ccba;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 16px;
+  }
+  #blank {
+    width: 20%;
+  }
+  #home-btn-nav,
+  #notification-btn-nav,
+  #message-btn,
+  #profile-btn-nav,
+  #camera-btn-nav {
+    width: 6%;
+  }
+  #camera-btn-nav {
+    font-size: 18px;
+    padding-top: 2px;
+  }
+  #navbar button:hover {
+    background-color: #03bdaa;
+  }
+  #navbar i:hover {
+    color: #02ccba;
+  }
+  #searchbar i:hover {
+    color: #ffffff;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #navbar {
+    border-bottom: 1px solid #eeeeee;
+  }
+  #logo {
+    width: 60%;
+    text-align: center;
+  }
+  #message-btn,
+  #burger-btn {
+    width: 20%;
+    padding: 0 15px;
+    margin-top: 0;
+  }
+  #message-btn {
+    text-align: right;
+  }
+}
+#logo span {
+  position: relative;
+  bottom: 7px;
+  color: #ffffff;
+}
+#container {
+  background-color: #f5f5f5;
+  top: 40px;
+  position: absolute;
+  width: 100%;
+}
+@media only screen and (max-width: 767px) {
+  .container-padding {
+    padding: 20px 0 40px 0;
+  }
+  .navbar-color {
+    background-color: #ffffff;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .container-padding {
+    padding: 20px 0 0 0;
+  }
+  .navbar-color {
+    background-color: #02B3E4;
+  }
+  #navbar i {
+    color: #ffffff;
+  }
+}
+
+
+/*  ***************************************************
+Post
+***************************************************  */
+
+
+.post {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+  max-width: 400px;
+  border: 1px solid #eeeeee;
+  transition: height 1s;
+}
+
+/* Header */
+
+.post-header {
+  padding: 15px;
+  font-size: 14px;
+  color: #555555;
+}
+.post-avatar, .post-user-info, .post-option-section {
+  display: inline-block;
+}
+.post-avatar {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  float: left;
+  border: 1px solid #cccccc;
+}
+.post-user-info {
+  margin-left: 15px;
+}
+.post-user-info a {
+  color: #555555;
+}
+.post-user-info a:hover {
+  text-decoration: underline;
+  color: #02B3E4;
+}
+.post-option-section {
+  float: right;
+  position: relative;
+  font-size: 20px;
+  text-align: right;
+}
+.post-option-section button {
+  border: 0;
+  outline: none;
+}
+.dropdown {
+  position: absolute;
+  width: max-content;
+  right: 0;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid #eeeeee;
+  z-index: 10;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px #888888;
+  outline: none;
+}
+.dropdown button {
+  padding: 10px;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+}
+.dropdown:last-child {
+  border-bottom: 0;
+}
+.dropdown button:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+.dropdown i:hover {
+  color: #555555;
+}
+
+/* Image */
+
+.post-img-content img {
+  width: 100%;
+  display: block;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Interactions */
+
+.interactions {
+  position: relative;
+  padding: 15px;
+}
+.interactions button {
+  display: inline-block;
+  font-size: 20px;
+  background-color: transparent;
+  border: 0;
+}
+.bookmark-btn {
+  position: relative;
+  top: 2px;
+  margin-right: 15px;
+}
+.interactions .like-btn {
+  position: absolute;
+  right: 15px;
+  border-radius: 5px;
+  border: 1px solid #02ccba;
+  color: #02ccba;
+  padding: 3px;
+  font-size: 14px;
+}
+.like-btn span {
+  position: relative;
+  bottom: 2px;
+}
+.like-btn i {
+  position: relative;
+  font-size: 20px;
+  margin-left: 3px;
+  color: #02ccba;
+}
+.like-btn:hover,
+.like-btn:hover *,
+.pressed {
+  color: #ffffff;
+  background-color: #02ccba;
+  border-color: #02ccba;
+}
+.like-btn:hover,
+.like-btn:hover * {
+  cursor: pointer;
+}
+.time {
+  padding-left: 15px;
+  font-size: 12px;
+  font-weight: lighter;
+  color: #888888;
+}
+
+/* Caption */
+
+.caption {
+  padding: 15px;
+  font-size: 14px;
+}
+
+/* Comment */
+
+.comment-section {
+  margin: 0 15px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  line-height: 21px;
+}
+.comment-input-section {
+  margin: 0 15px;
+  padding: 10px 0 7px 0;
+  border-top: 1px solid #eeeeee;
+}
+.comment-input {
+  resize: none;
+  width: 100%;
+  font-size: 14px;
+  height: 20px;
+  border: 0;
+  outline: none;
+}
+
+
+
+
+/*  ***************************************************
+Tabbar
+***************************************************  */
+
+
+#tabbar {
+  border-top: 1px solid #eeeeee;
+  bottom: 0;
+}
+#tabbar nav div,
+#tabbar nav form {
+  width: 20%;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+#uploadImg {
+  display: none;
+}
+
+
+/*  ***************************************************
+Modal post form
+***************************************************  */
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 0 20px 10px 20px;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .modal-content {
+    width: 50%;
+  }
+}
+#modal-nav {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #eeeeee;
+}
+#modal-nav-title {
+  font-size: 20px;
+}
+.close {
+  position: absolute;
+  color: #555555;
+  font-size: 30px;
+  top: 10px;
+  right: 0;
+}
+.close:hover,
+.close:focus {
+  color: #02B3E4;
+  text-decoration: none;
+  cursor: pointer;
+}
+#modal-input {
+  position: relative;
+  padding: 0;
+}
+#modal-input textarea {
+  width: 80%;
+  height: 100px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2%;
+  resize: none;
+  border: 0;
+  display: inline-block;
+}
+#modal-input textarea:focus {
+  outline: none;
+}
+#modal-input img {
+  position: absolute;
+  max-width: 20%;
+  max-height: 100%;
+  top: 5px;
+  right: 0;
+  display: inline-block;
+}
+#post-footer-modal {
+  position: relative;
+  padding-top: 10px;
+  margin-top: 20px;
+  border-top: 1px solid #eeeeee;
+  font-size: 20px;
+}
+#post-footer-modal * {
+  display: inline-block;
+  font-size: 16px;
+}
+#post-footer-modal button {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  font-size: 16px;
+  padding: 5px 30px;
+  border-radius: 5px;
+  background-color: #02ccba;
+  color: #ffffff;
+  border: 0;
+}
+#post-footer-modal button:hover,
+#post-footer-modal button:focus {
+  background-color: #03bdaa;
+  outline: none;
+}
