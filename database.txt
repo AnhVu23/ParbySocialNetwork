@@ -1,0 +1,29 @@
+DROP DATABASE IF EXISTS parbyserver ;
+
+CREATE DATABASE parbyserver;
+
+USE parbyserver;
+
+CREATE TABLE `users` (userid INT(20) NOT NULL AUTO_INCREMENT, email VARCHAR(255), password VARCHAR(255), username VARCHAR(255), fullname VARCHAR(255), usergroups INT(20), avatar VARCHAR(255), PRIMARY KEY (userid));
+
+CREATE TABLE `comments` (commendId INT(20) NOT NULL AUTO_INCREMENT, comment VARCHAR(255), 
+uploader INT(20) , imageId INT(20), PRIMARY KEY (commendId));
+
+CREATE TABLE `images` (imageId INT(20) NOT NULL AUTO_INCREMENT, time DATETIME, caption VARCHAR(255), imgData VARCHAR(255), uploader INT(20),
+albumId INT(20), PRIMARY KEY (imageId));
+
+CREATE TABLE `likes` (likeId INT(20) NOT NULL AUTO_INCREMENT, imageId INT(20), uploader INT(20), PRIMARY KEY (likeId));
+
+
+ALTER TABLE `comments` 
+ADD CONSTRAINT FK_user_to_comment FOREIGN KEY(uploader) REFERENCES users(userid),
+ADD CONSTRAINT FK_image_to_comment FOREIGN KEY (imageId) REFERENCES images(imageId);
+
+ALTER TABLE `images` 
+ADD CONSTRAINT FK_user_to_image FOREIGN KEY(uploader) REFERENCES users(userid);
+
+
+ALTER TABLE `likes` 
+ADD CONSTRAINT FK_user_to_like FOREIGN KEY(uploader) REFERENCES users(userid),
+ADD CONSTRAINT FK_image_to_like FOREIGN KEY (imageId) REFERENCES images(imageId);
+
