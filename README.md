@@ -53,5 +53,22 @@ Brought to you by ANT Team
 - Users can like (once per post) and comment on the posts
 - Each post (image) has tracks on the number of likes, views and comments
 - Auto redirect to login page when the user signs out.
+#### Back-end 
 
+## In this project, we imports 2 libraries for authorization purposes. We can add 2 dependencies by adding these lines in your pom.xml (if you are using Maven):
+
+<dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+<dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+            <type>jar</type>
+        </dependency>
+#First library is for creating Json token for remaining the login status of user. It can be also used to recognize the user.
+
+#Second library is for encoding and decoding the password using SHA-256.
 ### We will continue to pursue this project till we can launch a fullly-functional community of parents.
