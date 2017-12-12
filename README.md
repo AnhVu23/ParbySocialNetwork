@@ -11,8 +11,8 @@ Brought to you by ANT Team
 ## 3. Work division:
 
 #### Anh Vu: Backend developer
-  - Server: REST Api with JavaEE
-  - Database: MariaDB
+  - Server: REST Api with JavaEE, Glassfish 5
+  - Database: MySQL
   - Mockup
   
   
