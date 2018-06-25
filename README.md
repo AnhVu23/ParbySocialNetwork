@@ -4,7 +4,7 @@ Brought to you by ANT Team
 
 # Screenshots
 
-<img src="https://user-images.githubusercontent.com/22562689/41874011-5187c890-78cf-11e8-93b3-280e85c47310.png" height="400px" width="240px">
+<img src="https://user-images.githubusercontent.com/22562689/41874011-5187c890-78cf-11e8-93b3-280e85c47310.png" height="500px" width="500px">
 
 ## 1. Purpose: 
 - This project is to create a community where parents (especially new parents) can post their little angle's images to keep their memories together. 
