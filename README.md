@@ -2,6 +2,10 @@
 
 Brought to you by ANT Team
 
+# Screenshots
+
+<img src="https://user-images.githubusercontent.com/22562689/41874011-5187c890-78cf-11e8-93b3-280e85c47310.png" height="400px" width="240px">
+
 ## 1. Purpose: 
 - This project is to create a community where parents (especially new parents) can post their little angle's images to keep their memories together. 
 
@@ -53,6 +57,7 @@ Brought to you by ANT Team
 - Users can like (once per post) and comment on the posts
 - Each post (image) has tracks on the number of likes, views and comments
 - Auto redirect to login page when the user signs out.
+
 #### Back-end 
 
 ## In this project, we imports 2 libraries for authorization purposes. We can add 2 dependencies by adding these lines in your pom.xml (if you are using Maven):
